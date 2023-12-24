@@ -1,0 +1,98 @@
+<section class="chat">
+  <div class="header-chat">
+    <i class="icon fa fa-user-o" aria-hidden="true" (click)="openvideo(2)"></i>
+    <!-- <i class="  fa fa-ellipsis-h right" aria-hidden="true"></i> -->
+      <mat-icon class="right" style="font-size: 29px" (click)="openvideo(2)">videocam</mat-icon>
+  </div>
+  <div class="messages-chat" id="scrol" #scrollContainer>
+    <div *ngFor="let msg of msgs; let i = index" [ngClass]="{message: true, text_only: msg.receiver_id == id_recever}">
+
+      <div *ngIf="msg.receiver_id!=id_recever" class="photo"
+        style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);">
+        <div class="online"></div>
+      </div>
+      <p (mouseleave)="quitterElement()" (mouseenter)="survolerElement(i)"
+        *ngIf="msg.receiver_id!=id_recever && msg.message_type=='Text' " class="text">{{msg.content}}
+        <span class="dateMessage" [hidden]="!(hoverIndex !== i)"> {{ msg.send_date | date : "HH:mm" }}</span>
+
+        <span>
+          <mat-icon style="color: black; position: relative; left: 8px;" id="menuIco" [hidden]="hoverIndex !== i"
+            [matMenuTriggerFor]="menu">
+            expand_more</mat-icon>
+        </span>
+        <mat-menu #menu="matMenu">
+          <button (click)="deleteMessage('me',msg.id,i)" mat-menu-item>
+            <span>delete for me </span>
+          </button>
+          <button mat-menu-item>
+            <span>transfert</span>
+          </button>
+        </mat-menu>
+      </p>
+      <img *ngIf="msg.receiver_id!=id_recever && msg.message_type=='image'" [src]="'http://localhost:3000/images/'+msg.content" width="200px" >
+
+      <audio controls *ngIf="msg.receiver_id!=id_recever && msg.message_type=='Audio'" class="Text">
+        <source [src]="'http://localhost:3000/uploads/'+msg.content" type="audio/ogg">
+        Votre navigateur ne prend pas en charge l'élément audio.
+      </audio>
+
+      <!-- <img width="100px" [src]="profilePicture"> -->
+
+      <div *ngIf="msg.receiver_id==id_recever && msg.message_type=='Audio'" class="response">
+        <audio controls class="Text">
+          <source [src]="'http://localhost:3000/uploads/'+msg.content" type="audio/ogg">
+          Votre navigateur ne prend pas en charge l'élément audio.
+        </audio>
+      </div>
+      <div *ngIf="msg.receiver_id==id_recever && msg.message_type=='image'" style="padding:10px ;" class="response">
+      <img  [src]="'http://localhost:3000/images/'+msg.content"  width="200px" >
+      </div>
+      <div *ngIf="msg.receiver_id==id_recever && msg.message_type=='Text' && msg.deleted_fr_me==null" class="response">
+
+        <p (mouseleave)="quitterElement()" (mouseenter)="survolerElement(i)" class="text"> {{msg.content}}
+          <span class="dateMessage" [hidden]="!(hoverIndex !== i)"> {{ msg.send_date | date : "HH:mm" }}</span>
+          <span>
+            <mat-icon style="color: black; position: relative; left: 8px;" id="menuIco" [hidden]="hoverIndex !== i"
+              [matMenuTriggerFor]="menu">
+              expand_more</mat-icon>
+          </span>
+          <mat-menu #menu="matMenu">
+            <button (click)="deleteMessage('me',msg.id,i)" mat-menu-item>
+              <span>delete for me </span>
+            </button>
+            <button (click)="deleteMessage('all',msg.id,i)" mat-menu-item>
+              <span>delete for all</span>
+            </button>
+            <button  (click)="openDialog(msg)" mat-menu-item>
+              <span>transfert</span>
+            </button>
+          </mat-menu>
+        </p>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+  <div *ngIf="id_recever" class="footer-chat">
+    <i class="icon fa fa-smile-o clickable" style="font-size:25pt;" aria-hidden="true"></i>
+    <input type="text" class="write-message" placeholder="Type your message here" [(ngModel)]="content">
+    <i class="icon send fa fa-paper-plane-o clickable" (click)="sendMessage()" aria-hidden="true" *ngIf="content"></i>
+    <mat-icon (click)="sendMessage()" *ngIf="!content">mic</mat-icon>
+ 
+    <input type="file" style="display: none;" class="file-input" 
+    (change)="handleProfilePictureInput($event)" #fileUpload>
+
+<div class="file-upload">
+
+
+ <button mat-mini-fab color="primary" class="upload-btn"
+    (click)="fileUpload.click()">
+     <mat-icon>attach_file</mat-icon>
+ </button> 
+</div>
+  </div>
+
+</section>

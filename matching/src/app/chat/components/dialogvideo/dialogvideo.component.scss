@@ -1,0 +1,25 @@
+.okkkk {
+
+    z-index: 1000; /* Un z-index élevé pour s'assurer que le fond sombre est au premier plan */
+    overflow: hidden;
+  }
+
+.videoclo{
+    display: flex;
+    justify-content:space-between;
+    padding-right: 20px;
+
+}
+.videochat{
+    max-height: 80%;
+    display: flex;
+    justify-content: space-between;
+    overflow:hidden;
+
+}
+.bb{
+    position: relative;
+    width: 50%;
+    max-height: 80%;
+    overflow:hidden;
+}

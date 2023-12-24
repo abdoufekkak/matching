@@ -1,0 +1,43 @@
+<div class="feed" #monDiv>
+    <div class="storyReel">
+      <!-- story starts -->
+      <div *ngFor="let invi of invits"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1527082395-e939b847da0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+        "
+        class="story"
+      >
+        
+        <h4 >{{invi.username}}</h4>
+        <div class="match">
+
+          <button mat-flat-button [ngClass]="'small-button'" style=" border-radius: 50%;  background-color: transparent;   margin: auto; margin: 10px;" (click)="accepterinvite(invi.id|| -1)">   
+                   <mat-icon style="margin: auto;" >wifi_protected_setup</mat-icon>
+          </button>
+          <button mat-flat-button [ngClass]="'small-button'" style=" border-radius: 50%;   background-color: transparent;   margin: auto; " (click)="refuse(invi.id|| -1)">   
+            <mat-icon style="margin: auto;" >close</mat-icon>
+ </button>
+        </div>
+      
+
+      </div>
+      <!-- story ends -->
+
+    
+      <!-- story ends -->
+
+      <!-- story starts -->
+     
+     
+      <!-- story ends -->
+    </div>
+
+    <!-- message sender starts -->
+    <div class="messageSender">
+   
+    <!-- message sender ends -->
+
+    <!-- post starts -->
+   <app-allpost></app-allpost>
+    <!-- post ends -->
+  </div>

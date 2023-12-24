@@ -1,0 +1,12 @@
+.container_statisque{
+    margin: auto;
+    display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+  grid-gap: 40px; /* Espacement entre les éléments */
+}
+
+.aloo{
+    display: flex;
+    justify-content: space-between;
+    // border: 1px;
+}

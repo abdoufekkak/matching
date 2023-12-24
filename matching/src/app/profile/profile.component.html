@@ -1,0 +1,10 @@
+<div class="feed">
+    <app-statistique-profile class="aloo" ></app-statistique-profile>
+
+    <!-- message sender starts -->
+   <app-poster-postes (EventEmitter)="ajouterPost($event)" ></app-poster-postes>
+    <!-- message sender ends -->
+
+    <!-- post starts -->
+<app-postes [posts]="posts"></app-postes>
+  </div>

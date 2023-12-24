@@ -1,0 +1,28 @@
+<div class="FF">
+  <section class="login" id="login">
+    <div class="head">
+      <h1 class="company">Universe Explorer</h1>
+    </div>
+    <p class="msg">Welcome back</p>
+    <div class="form">
+      <form>
+        <input
+          type="text"
+          placeholder="Username"
+          class="text"
+          id="username"
+          required
+          #usernameInput
+          [(ngModel)]="login.username"
+        /><br />
+        <input
+          type="password"
+          placeholder="••••••••••••••"
+          class="password"
+        /><br />
+        <a href="#" class="btn-login" (click)="onlogin(usernameInput.value)">Login</a>
+        <a href="#" class="forgot">Forgot?</a>
+      </form>
+    </div>
+  </section>
+</div>
